@@ -41,6 +41,7 @@ return {
         "svelte",
         "graphql",
         "bash",
+        "go",
         "lua",
         "vim",
         "dockerfile",

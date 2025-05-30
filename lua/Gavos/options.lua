@@ -20,7 +20,6 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.clipboard:append("unnamedplus")
-
 opt.backspace = "indent,eol,start"
 
 opt.splitright = true

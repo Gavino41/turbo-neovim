@@ -1,19 +1,15 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
+  version = "^2.0.0",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    { "mason-org/mason-lspconfig.nvim", version = "^2.0.0" },
+    "neovim/nvim-lspconfig",
   },
   config = function()
-    -- import mason
     local mason = require("mason")
-
-    -- import mason-lspconfig
     local mason_lspconfig = require("mason-lspconfig")
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    local mason_tool_installer = require("mason-tool-installer")
-
-    -- enable mason and configure icons
     mason.setup({
       ui = {
         icons = {
@@ -25,31 +21,42 @@ return {
     })
 
     mason_lspconfig.setup({
-      -- list of servers for mason to install
       ensure_installed = {
         "eslint",
         "jsonls",
         "html",
         "cssls",
         "tailwindcss",
-        "svelte",
+        "golangci_lint_ls",
         "lua_ls",
-        "graphql",
-        "emmet_ls",
-        "prismals",
         "pyright",
       },
-      automatic_installation = true
+      automatic_enable = true,
     })
 
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier", -- prettier formatter
-        "isort", -- python formatter
-        "black", -- python formatter
-        "pylint",
-        "eslint_d",
+    -- Configure servers using vim.lsp.config
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+          completion = {
+            callSnippet = "Replace",
+          },
+        },
+      },
+    })
+
+    vim.lsp.config("pyright", {
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = "basic",
+          },
+        },
       },
     })
   end,
 }
+
