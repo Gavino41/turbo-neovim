@@ -29,7 +29,7 @@ return {
         "tailwindcss",
         "golangci_lint_ls",
         "lua_ls",
-        "pyright",
+        "pylsp",
       },
       automatic_enable = true,
     })
@@ -48,7 +48,7 @@ return {
       },
     })
 
-    vim.lsp.config("pyright", {
+    vim.lsp.config("pylsp", {
       settings = {
         python = {
           analysis = {

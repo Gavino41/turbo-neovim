@@ -27,15 +27,14 @@ return {
     -- Set up LSP servers
     mason_lspconfig.setup({
       ensure_installed = {
-        "eslint",
         "jsonls",
         "html",
         "cssls",
         "tailwindcss",
-        "golangci_lint_ls",
+        "gopls",
         "lua_ls",
-        "pyright",
-        "tsserver",
+        "pylsp",
+        "ts_ls",
       },
       automatic_enable = true,
     })
@@ -54,7 +53,7 @@ return {
       },
     })
 
-    vim.lsp.config("pyright", {
+    vim.lsp.config("pylsp", {
       settings = {
         python = {
           analysis = {
