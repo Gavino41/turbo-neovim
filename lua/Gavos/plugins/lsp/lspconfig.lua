@@ -11,7 +11,7 @@ return {
   config = function()
     -- Import necessary modules
     local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
+    local mason_lspconfig = require("mason")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     -- Set up capabilities for autocompletion
